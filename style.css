@@ -1,0 +1,262 @@
+/* --- 1. General Setup --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none; 
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* --- 2. Setup Screen Styles --- */
+#setup-screen, #login-screen {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+.setup-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.setup-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.setup-box label {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.setup-box input, .setup-box select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#btn-start {
+    background-color: #28a745;
+    color: white;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* --- 3. Header & Navigation --- */
+header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#date-display {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* --- 4. The Main Flashcard Area --- */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; /* THIS IS THE MAGIC LINE that stacks them */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+#flashcard {
+    width: 100%;
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    touch-action: manipulation; 
+}
+
+#student-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#enrollment-number {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#status-indicator {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- 5. The State Colors --- */
+.card-default { background-color: white; border: 2px solid #e0e0e0; }
+.card-default #status-indicator { color: #999; }
+
+.card-present { background-color: #d4edda; border: 2px solid #28a745; }
+.card-present #status-indicator { color: #155724; }
+
+.card-leave { background-color: #fff3cd; border: 2px solid #ffc107; }
+.card-leave #status-indicator { color: #856404; }
+
+/* --- 6. The Bottom Buttons --- */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: white;
+    border-top: 1px solid #eee;
+}
+
+button {
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+#btn-previous { background-color: #e0e0e0; color: #333; }
+#btn-leave { background-color: #ffc107; color: #000; }
+#btn-next { background-color: #1a73e8; color: white; flex-grow: 1; margin-left: 10px; }
+
+/* --- 7. Screen Switching Magic --- */
+.hidden { display: none !important; }
+#attendance-screen { display: flex; flex-direction: column; height: 100%; }
+
+/* --- 8. Sync Banner Styles --- */
+#sync-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+.sync-clear { background-color: #d4edda; color: #155724; }
+.sync-pending { background-color: #fff3cd; color: #856404; }
+
+#btn-sync {
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    margin: 0;
+}
+/* --- 9. Review Map & List Styles --- */
+
+/* The Grid Layout */
+.grid-container {
+    display: grid;
+    /* This automatically fits as many 60px boxes as possible in a row */
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+/* Base Map Box Styling */
+.map-box {
+    aspect-ratio: 1; /* Keeps them perfectly square */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    cursor: default; /* Changes to pointer only in edit mode */
+}
+
+/* Present: Raised and Green */
+.map-present {
+    background-color: #28a745;
+    box-shadow: 0 6px 0 #1e7e34, 0 10px 10px rgba(0,0,0,0.2);
+    transform: translateY(-4px); /* Pushes the box up visually */
+}
+
+/* Absent: Flat and Red */
+.map-absent {
+    background-color: #dc3545;
+    box-shadow: 0 2px 0 #bd2130;
+}
+
+/* Leave: Flat and Yellow */
+.map-leave {
+    background-color: #ffc107;
+    color: #333;
+    box-shadow: 0 2px 0 #d39e00;
+}
+
+/* Vertical List Styles */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+/* Visual Indicator for Edit Mode Active */
+.edit-mode-active {
+    outline: 3px dashed #ffc107;
+    outline-offset: 5px;
+    border-radius: 10px;
+}
