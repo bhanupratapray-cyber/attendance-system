@@ -78,25 +78,23 @@
     }
 
     .sidebar {
-        position: fixed;
-        left: -250px; /* Hide it completely off the left side */
-        top: 0;
-        height: 100vh;
-        z-index: 999;
-        transition: left 0.3s ease-in-out; /* Smooth sliding animation */
+        display: none; /* Hide the menu completely by default */
+        position: relative; /* Normal stacking behavior */
+        width: 100%;
+        height: auto; /* Let it shrink to fit the buttons */
+        padding-bottom: 10px;
     }
 
-    /* This class gets added by JavaScript to slide it in */
+    /* When the Javascript adds the 'open' class, just show it instantly */
     .sidebar.open {
-        left: 0; 
+        display: block; 
     }
 
-    /* Show the dark overlay when sidebar is open */
-    .sidebar-overlay.open {
-        display: block;
+    /* We don't need the dark background anymore for a simple dropdown */
+    .sidebar-overlay {
+        display: none !important; 
     }
 
-    /* Make the main content take up the whole screen on mobile */
     .main-content {
         margin-left: 0 !important;
         width: 100%;
