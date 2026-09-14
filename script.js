@@ -1,7 +1,7 @@
 // ==========================================
 // --- 1. THE DATABASE & SETTINGS ---
 // ==========================================
-const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbxC52QjG70vEclTenjjaumbHvH3DSApGcdoFJaBZx1Vfk2gO_kPdlPnT5XoUQS2SdLj/exec";
+const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbwPah81IfMTIY4ST_A8djsJcua_ahOIzi4T_d7r8mhuFdaHXJaqIq6Ke4aUWg6HCB_A/exec";
 
 // We only need the student database now; Security Guard handles teachers!
 const studentDatabase = JSON.parse(localStorage.getItem('studentVault')) || {};
@@ -88,7 +88,6 @@ btnSync.addEventListener('click', async () => {
             const payload = waitingRoom[i];
             await fetch(GOOGLE_APP_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
                 body: JSON.stringify(payload)
             });
         }
@@ -473,10 +472,7 @@ btnFinalSave.addEventListener('click', () => {
 
     fetch(GOOGLE_APP_URL, {
         method: 'POST',
-        body: JSON.stringify(finalData),
-        headers: {
-            'Content-Type': 'text/plain;charset=utf-8' 
-        }
+        body: JSON.stringify(finalData)
     })
     .then(response => response.json())
     .then(data => {
